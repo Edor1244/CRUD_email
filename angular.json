@@ -25,6 +25,7 @@
               "src/assets"
             ],
             "styles": [
+              "../CRUD_email/node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css"
             ],
             "scripts": []
