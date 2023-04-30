@@ -5,12 +5,12 @@
         {{title}}
       </h1>
     </div>
-   <div class="col-sm-4">
-    <div class="alert alert-warning alert-dismissible fade show" role="alert">
-      <strong>Hola Como estas!?</strong> Registrate en el Formulario por favor
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
+  <div class="col-sm-4">
+    <div class="alert alert-success alert-dismissable" *ngIf="msg">
+      <a href="#" class="close" (click)="closeAlert()">
+        &times;
+      </a>
+      {{msg}}
     </div>
   </div>
   </div>
@@ -63,18 +63,19 @@
             <th>Name</th>
             <th>TypeCard</th>
             <th>Email</th>
-            <th></th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let card of cards, let i = index">
             <td>{{card.name}}</td>
             <td>{{card.cardType}}</td>
+            <td>{{card.email}}</td>
             <td>
               <a (click)="editCard(i)" class="btn btnEditCard btn-success">
                 Edit
               </a>
-              <a (click)="deleteCard()" class="btn btnDeleteCard btn-danger">
+              <a (click)="deleteCard(i)" class="btn btnDeleteCard btn-danger">
                 Delete
               </a>
             </td>
