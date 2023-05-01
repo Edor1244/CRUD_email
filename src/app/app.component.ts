@@ -9,7 +9,7 @@ import { Component } from '@angular/core';
 export class AppComponent {
 
   title: string = 'Angular email CRUD';
-  msg: string = '';
+  msg: string = "Encantado de Informarte";
   cards = [ 
     {'name': 'Mago de Hielo', cardType:'Tropa', 'email': 'Mago_Hielo@live.com'},
     {'name': 'Bola de Fuego', cardType:'Hechizo', 'email': 'Bola_de_Fuego@live.com'},
@@ -24,15 +24,15 @@ model2:any = { };
 addCard() : void{
   this.cards.push(this.model);
   this.model = {};
-  alert('Se Agrego la Carta');
+  this.msg = "Se Agrego la Carta";
 }
 deleteCard(i = this.cards.length):void{
   var answer = confirm('estas seguro de querer eliminar la carta?');
   if(answer == true){
     this.cards.splice(i,1);
-    alert('Se elimino la Carta');
+    this.msg = "Se elimino la Carta";
   }else {
-    alert('la carta no se elimino')
+    this.msg = "La carta no se elimino";
   }
 }
 
@@ -51,10 +51,6 @@ updateCard():void{
       this.model2 = {};
     }
   }
-  alert('Se actualizo la Carta');
-}
-
-closeAlert(): void{
-  
+  this.msg = "Se actualizo la Carta";
 }
 }
