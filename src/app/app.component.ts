@@ -11,9 +11,9 @@ export class AppComponent {
   title: string = 'Angular email CRUD';
   msg: string = "Encantado de Informarte";
   cards = [ 
-    {'name': 'Mago de Hielo', cardType:'Tropa', 'email': 'Mago_Hielo@live.com'},
-    {'name': 'Bola de Fuego', cardType:'Hechizo', 'email': 'Bola_de_Fuego@live.com'},
-    {'name': 'Torre Tesla', cardType:'Estructura', 'email': 'Torre_Tesla@live.com'}
+    {'name': 'Mago de Hielo', cardType:'Tropa', 'descripcion': 'Mago_Hielo@live.com'},
+    {'name': 'Bola de Fuego', cardType:'Hechizo', 'descripcion': 'Bola_de_Fuego@live.com'},
+    {'name': 'Torre Tesla', cardType:'Estructura', 'descripcion': 'Torre_Tesla@live.com'}
 ];
 
 
@@ -25,6 +25,7 @@ addCard() : void{
   this.cards.push(this.model);
   this.model = {};
   this.msg = "Se Agrego la Carta";
+  //API REST Firebase
 }
 deleteCard(i = this.cards.length):void{
   var answer = confirm('estas seguro de querer eliminar la carta?');
@@ -39,7 +40,7 @@ deleteCard(i = this.cards.length):void{
 editCard(i = this.cards.length): void{
   this.model2.name = this.cards[i].name;
   this.model2.cardType = this.cards[i].cardType;
-  this.model2.email = this.cards[i].email;
+  this.model2.descripcion = this.cards[i].descripcion;
   this.myValue = i;
 }
 
