@@ -9,12 +9,15 @@ import { environment } from '../environments/environment';
 import { RegisterComponent } from './register/register.component';
 import { InicioCartasComponent } from './inicio-cartas/inicio-cartas.component';
 import { AppRoutingModule } from '../app-routing.module';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    LogInComponent,
     RegisterComponent,
+    LogInComponent,
     InicioCartasComponent
   ],
   imports: [
