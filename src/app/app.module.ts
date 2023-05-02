@@ -7,15 +7,14 @@ import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { provideAuth,getAuth } from '@angular/fire/auth';
 import { environment } from '../environments/environment';
 import { RegisterComponent } from './register/register.component';
-
-
-const app = initializeApp(environment.firebaseConfig);
+import { InicioCartasComponent } from './inicio-cartas/inicio-cartas.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LogInComponent,
-    RegisterComponent
+    RegisterComponent,
+    InicioCartasComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,120 @@
+<div class="container app">
+    <div class="row">
+      <div class="col-sm-8">
+        <h1 class="text-center">
+          {{title}}
+        </h1>
+      </div>
+     <div class="col-sm-4">
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>Hola Como estas!?</strong> {{ msg }}
+      </div>
+    </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-4">
+        <img class="img_1" src="../assets/imagen_1.jpg">
+      </div>
+      <div class="col-sm-8">
+        <h2>Create Data:</h2>
+        <form (submit)="addCard()" class="form-horizontal" id="form-Create_Data">
+          <div class="form-group">
+            <label for="name" class="control-label col-sm2">
+              Name
+            </label>
+            <div class="col-sm-10">
+              <input type="text" autocomplete="off" class="form-control" id="name" name="name" [(ngModel)]="model.name" placeholder="Write the CardName"> 
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="cardType" class="control-label col-sm2">
+              Type-Card
+            </label>
+            <div class="col-sm-10">
+              <input type="text" autocomplete="off" class="form-control" id="cardType" name="cardType" [(ngModel)]="model.cardType" placeholder="Write the TypeCard"> 
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="descripcion" class="control-label col-sm2">
+              Descripcion
+            </label>
+            <div class="col-sm-10">
+              <input type="text" autocomplete="off" class="form-control" id="descripcion" name="descripcion" [(ngModel)]="model.descripcion" placeholder="Write the descripcion"> 
+            </div>
+          </div>
+          <br>
+          <div class="form-group">
+            <div class="col-sm-10 col-sm-offset-2">
+              <button id="button_Aceptar" type="submit" class="btn btn-success"> Aceptar </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-8">
+        <h2>READ DATA:</h2>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>TypeCard</th>
+              <th>Descripcion</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let card of cards, let i = index">
+              <td>{{card.name}}</td>
+              <td>{{card.cardType}}</td>
+              <td>{{card.descripcion}}</td>
+              <td>
+                <a (click)="editCard(i)" class="btn btnEditCard btn-success">
+                  Edit
+                </a>
+                <a (click)="deleteCard(i)" class="btn btnDeleteCard btn-danger">
+                  Delete
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+        <div class="col-sm-4">
+          <h2>UPDATE DATA:</h2>
+          <form class="form-horizontal">
+              <div class="form-group">
+                <label for="name" class="control-label col-sm2">
+                  Name
+                </label>
+                <div class="col-sm-10">
+                  <input type="text" autocomplete="off" class="form-control" id="name" name="name" [(ngModel)]="model2.name" placeholder="Write the CardName"> 
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="cardType" class="control-label col-sm2">
+                  Type-Card
+                </label>
+                <div class="col-sm-10">
+                  <input type="text" autocomplete="off" class="form-control" id="cardType" name="cardType" [(ngModel)]="model2.cardType" placeholder="Write the TypeCard"> 
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="descripcion" class="control-label col-sm2">
+                  Descripcion
+                </label>
+                <div class="col-sm-10">
+                  <input type="text" autocomplete="off" class="form-control" id="descripcion" name="descripcion" [(ngModel)]="model2.descripcion" placeholder="Write the descripcion"> 
+                </div>
+              </div>
+              <br>
+              <div class="form-group">
+                <div class="col-sm-10 col-sm-offset-2">
+                  <button type="submit" class="btn btn-success" (click)="updateCard()">Actualizar</button>
+                </div>
+              </div>
+            </form>
+        </div>
+    </div>
+  </div>
+  
