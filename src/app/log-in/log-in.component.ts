@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/auth';
+
 
 @Component({
   selector: 'app-log-in',
@@ -12,15 +12,6 @@ export class LogInComponent {
   email = this.modelLog.email;
   password = this.modelLog.password;
 
-  constructor(private auth: AngularFireAuth) {}
 
-  logIn(){
-    this.auth.signInWithEmailAndPassword(this.email, this.password)
-    .then(userCredential =>{
-
-    })
-    .catch(error => {
-      console.error(error);
-    });
-  }
+  logIn(){}
 }
