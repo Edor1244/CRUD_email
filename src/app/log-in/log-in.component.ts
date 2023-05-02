@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class LogInComponent {
 
+  modelLog: any= {};
+
+  logIn() : void{
+    console.log(this.modelLog)
+  }
 }
