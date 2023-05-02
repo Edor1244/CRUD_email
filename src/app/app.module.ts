@@ -8,7 +8,7 @@ import { provideAuth,getAuth } from '@angular/fire/auth';
 import { environment } from '../environments/environment';
 import { RegisterComponent } from './register/register.component';
 import { InicioCartasComponent } from './inicio-cartas/inicio-cartas.component';
-import { AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule } from '../app-routing.module';
 
 @NgModule({
   declarations: [
