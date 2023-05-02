@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { initializeApp } from "firebase/app";
+
 
 @Component({
   selector: 'app-root',
@@ -8,12 +10,12 @@ import { Component } from '@angular/core';
 
 export class AppComponent {
 
-  title: string = 'Angular email CRUD';
+  title: string = 'Angular CRUD';
   msg: string = "Encantado de Informarte";
   cards = [ 
-    {'name': 'Mago de Hielo', cardType:'Tropa', 'descripcion': 'Mago_Hielo@live.com'},
-    {'name': 'Bola de Fuego', cardType:'Hechizo', 'descripcion': 'Bola_de_Fuego@live.com'},
-    {'name': 'Torre Tesla', cardType:'Estructura', 'descripcion': 'Torre_Tesla@live.com'}
+    {'name': 'Mago de Hielo', cardType:'Tropa', 'descripcion': 'Mago que congela', 'email': 'Mago_Hielo@live.com'},
+    {'name': 'Bola de Fuego', cardType:'Hechizo', 'descripcion': 'Bola de fuego del cielo', 'email': 'Bola_de_Fuego@live.com'},
+    {'name': 'Torre Tesla', cardType:'Estructura', 'descripcion': 'Torre que se esconde hasta ver un enemigo', 'email': 'Torre_Tesla@live.com'}
 ];
 
 
