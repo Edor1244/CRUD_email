@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import * as firebase from 'firebase/app';
+import { Router } from '@angular/router';
 
 
 
@@ -11,21 +11,22 @@ import * as firebase from 'firebase/app';
 })
 export class LogInComponent{
 
-  constructor(public auth: AngularFireAuth) {}
+  constructor(public auth: AngularFireAuth) {};
 
   modelLog: any= {};
  
   login() {
     
+    var isUserLogin:string = '';
     const email = this.modelLog.email;
     const password = this.modelLog.password;
     
     this.auth.signInWithEmailAndPassword(email, password)
       .then(userCredential => {
-        console.log('se inicio sesion');
+        console.log('se autentico usuario')
       })
       .catch(error => {
-        console.log('No se inicio sesion');
+        console.log('aun no lo logras mano')
       });
   }
 }

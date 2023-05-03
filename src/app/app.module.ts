@@ -10,6 +10,8 @@ import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideAuth,getAuth } from '@angular/fire/auth';
 import { provideDatabase,getDatabase } from '@angular/fire/database';
+import { FIREBASE_OPTIONS } from '@angular/fire/compat';
+import { CommonModule } from '@angular/common';
 
 
 
@@ -21,6 +23,7 @@ import { provideDatabase,getDatabase } from '@angular/fire/database';
     InicioCartasComponent
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     FormsModule,
     RouterModule,
@@ -28,7 +31,8 @@ import { provideDatabase,getDatabase } from '@angular/fire/database';
     provideAuth(() => getAuth()),
     provideDatabase(() => getDatabase())
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [{ provide: FIREBASE_OPTIONS, useValue: environment.firebase }],
+  bootstrap: [AppComponent],
+  
 })
 export class AppModule { }

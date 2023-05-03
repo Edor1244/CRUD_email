@@ -23,7 +23,6 @@ addCard() : void{
   this.cards.push(this.model);
   this.model = {};
   this.msg = "Se Agrego la Carta";
-  //API REST Firebase
 }
 deleteCard(i = this.cards.length):void{
   var answer = confirm('estas seguro de querer eliminar la carta?');
