@@ -16,6 +16,7 @@ export class LogInComponent{
   modelLog: any= {};
  
   login() {
+    
     const email = this.modelLog.email;
     const password = this.modelLog.password;
     
