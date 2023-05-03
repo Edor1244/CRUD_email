@@ -7,9 +7,9 @@ import { InicioCartasComponent } from './app/inicio-cartas/inicio-cartas.compone
 
 const routes: Routes = [
   { path: '', component: LogInComponent },
-  { path: 'login', component: LogInComponent },
-  {path: 'Register', component: RegisterComponent},
-  {path: 'InicioCartas', component: InicioCartasComponent}
+  { path: '/login', component: LogInComponent },
+  {path: '/register', component: RegisterComponent},
+  {path: '/inicioCartas', component: InicioCartasComponent}
 ];
 
 @NgModule({
