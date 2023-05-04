@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
+import { getDatabase } from '@angular/fire/database';
 
 @Component({
   selector: 'app-inicio-cartas',
@@ -10,11 +11,18 @@ import { Router } from '@angular/router';
 export class InicioCartasComponent {
   title: string = 'Angular CRUD';
   msg: string = "Encantado de Informarte";
-  cards = [ 
-    {'name': 'Mago de Hielo', cardType:'Tropa', 'descripcion': 'Mago que congela', 'email': 'Mago_Hielo@live.com'},
-    {'name': 'Bola de Fuego', cardType:'Hechizo', 'descripcion': 'Bola de fuego del cielo', 'email': 'Bola_de_Fuego@live.com'},
-    {'name': 'Torre Tesla', cardType:'Estructura', 'descripcion': 'Torre que se esconde hasta ver un enemigo', 'email': 'Torre_Tesla@live.com'}
-];
+  idTokenUser = localStorage.getItem('tokenUid');  
+  userUid = localStorage.getItem('userUid')
+
+  
+  databaseURL = `https://angular-crud-eec-default-rtdb.firebaseio.com/cards/${this.userUid}.json?auth=${this.idTokenUser}`;
+
+//   cards = [ 
+//     {'name': 'Mago de Hielo', cardType:'Tropa', 'descripcion': 'Mago que congela', 'email': 'Mago_Hielo@live.com'},
+//     {'name': 'Bola de Fuego', cardType:'Hechizo', 'descripcion': 'Bola de fuego del cielo', 'email': 'Bola_de_Fuego@live.com'},
+//     {'name': 'Torre Tesla', cardType:'Estructura', 'descripcion': 'Torre que se esconde hasta ver un enemigo', 'email': 'Torre_Tesla@live.com'}
+// ]
+;
 
 constructor(public auth: AngularFireAuth,private router: Router) {};
 
@@ -23,36 +31,37 @@ model:any = { };
 model2:any = { };
 
 addCard() : void{
-  this.cards.push(this.model);
-  this.model = {};
-  this.msg = "Se Agrego la Carta";
+  
+  // this.cards.push(this.model);
+  // this.model = {};
+  // this.msg = "Se Agrego la Carta";
 }
-deleteCard(i = this.cards.length):void{
-  var answer = confirm('estas seguro de querer eliminar la carta?');
-  if(answer == true){
-    this.cards.splice(i,1);
-    this.msg = "Se elimino la Carta";
-  }else {
-    this.msg = "La carta no se elimino";
-  }
+deleteCard(/*i = this.cards.length*/):void{
+  // var answer = confirm('estas seguro de querer eliminar la carta?');
+  // if(answer == true){
+  //   this.cards.splice(i,1);
+  //   this.msg = "Se elimino la Carta";
+  // }else {
+  //   this.msg = "La carta no se elimino";
+  // }
 }
 
-editCard(i = this.cards.length): void{
-  this.model2.name = this.cards[i].name;
+editCard(/*i = this.cards.length*/): void{
+ /* this.model2.name = this.cards[i].name;
   this.model2.cardType = this.cards[i].cardType;
   this.model2.descripcion = this.cards[i].descripcion;
-  this.myValue = i;
+  this.myValue = i;*/
 }
 
 updateCard():void{
-  let i = this.myValue;
+  /*let i = this.myValue;
   for( let j = 0 ; j <this.cards.length; j++){
     if(i == j){
       this.cards[i] = this.model2;
       this.model2 = {};
     }
   }
-  this.msg = "Se actualizo la Carta";
+  this.msg = "Se actualizo la Carta";*/
 }
 
 CerrarSesion(){

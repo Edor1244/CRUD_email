@@ -13,6 +13,7 @@ import { provideDatabase,getDatabase } from '@angular/fire/database';
 import { FIREBASE_OPTIONS } from '@angular/fire/compat';
 import { CommonModule } from '@angular/common';
 import { AppRoutingModule } from './app-routing.module';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -25,6 +26,7 @@ import { AppRoutingModule } from './app-routing.module';
   ],
   imports: [
     CommonModule,
+    HttpClientModule,
     BrowserModule,
     FormsModule,
     RouterModule,

@@ -65,15 +65,15 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let card of cards, let i = index">
-              <td>{{card.name}}</td>
-              <td>{{card.cardType}}</td>
-              <td>{{card.descripcion}}</td>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
               <td>
-                <a (click)="editCard(i)" class="btn btnEditCard btn-success">
+                <a (click)="editCard()" class="btn btnEditCard btn-success">
                   Edit
                 </a>
-                <a (click)="deleteCard(i)" class="btn btnDeleteCard btn-danger">
+                <a (click)="deleteCard()" class="btn btnDeleteCard btn-danger">
                   Delete
                 </a>
               </td>

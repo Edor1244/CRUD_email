@@ -29,6 +29,14 @@ export class RegisterComponent {
   .then(userCredential => {
     console.log('se creo usuario');
     this.router.navigate(['/inicioCartas']);
+    let userUid = userCredential.user?.uid ?? '';
+    let tokenUid = '';
+    userCredential.user?.getIdToken().then(idToken => {
+      tokenUid = idToken;
+    });
+    localStorage.setItem('userUid', userUid)
+    localStorage.setItem('tokenUid', tokenUid)
+    //console.log(userCredential.user?.uid);
   }).catch(error => {
     alert('No se creo un carajo')
   });
