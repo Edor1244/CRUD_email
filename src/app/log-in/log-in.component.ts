@@ -18,7 +18,6 @@ export class LogInComponent{
   modelLog: any= {};
  
   login() {
-
     const email = this.modelLog.email;
     const password = this.modelLog.password;
     
@@ -28,11 +27,11 @@ export class LogInComponent{
         this.router.navigate(['/inicioCartas']);
       })
       .catch(error => {
-        console.log('Hay algun error en el email o la contraseña')
+        alert('Hay algun parametro incorrecto o vacio y eso no puede estar asi cabecita dura')
       });
   }
 
   registerNew(){
-
+    this.router.navigate(['/register']);
   }
 }

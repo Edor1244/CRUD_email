@@ -1,15 +1,16 @@
 <form>
     <div>
       <label>Nombre:</label>
-      <input type="text" name="name">
+      <input type="text" name="name"  autocomplete="off" class="form-control"required="true"  placeholder="Write the Name">
     </div>
     <div>
       <label>Email:</label>
-      <input type="email" name="email">
+      <input type="email" name="email" autocomplete="off" class="form-control"  [(ngModel)]="modelRegister.email"  placeholder="Write the Email" required="true" >
     </div>
     <div>
       <label>Contraseña:</label>
-      <input type="password" name="password">
+      <input  autocomplete="off" class="form-control"  [(ngModel)]="modelRegister.password"  placeholder="Write the Password" required="true" type="password" name="password">
     </div>
-    <button type="submit">Registrarse</button>
+    <button type="submit" (click)="createNewUser()" class="btn btn-success" >Registrarse</button>
+    <button id="button_back2Register" (click)="back2Login()" class="btn btn-success"> Regresar a Login</button>
   </form>

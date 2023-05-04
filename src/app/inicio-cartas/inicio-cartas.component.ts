@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-inicio-cartas',
@@ -14,6 +16,7 @@ export class InicioCartasComponent {
     {'name': 'Torre Tesla', cardType:'Estructura', 'descripcion': 'Torre que se esconde hasta ver un enemigo', 'email': 'Torre_Tesla@live.com'}
 ];
 
+constructor(public auth: AngularFireAuth,private router: Router) {};
 
 myValue:number = 0;
 model:any = { };
@@ -50,5 +53,11 @@ updateCard():void{
     }
   }
   this.msg = "Se actualizo la Carta";
+}
+
+CerrarSesion(){
+  this.auth.signOut();
+  this.router.navigate(['/login']);
+  console.log('se cerro sesion')
 }
 }
