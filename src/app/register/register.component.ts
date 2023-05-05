@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { AngularFireDatabase} from '@angular/fire/compat/database';
+import { HttpClientModule } from '@angular/common/http';
+import { idToken } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-register',
@@ -10,7 +13,7 @@ import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 })
 export class RegisterComponent {
 
-  constructor(public auth: AngularFireAuth,private router: Router) {};
+  constructor(public auth: AngularFireAuth,private router: Router,private db: AngularFireDatabase) {};
 
 
   modelRegister: any = {}
@@ -21,7 +24,6 @@ export class RegisterComponent {
   }
 
  async createNewUser(){
-  console.log(this.modelRegister)
   const email = this.modelRegister.email;
   const password = this.modelRegister.password;
 
@@ -30,14 +32,13 @@ export class RegisterComponent {
     console.log('se creo usuario');
     this.router.navigate(['/inicioCartas']);
     let userUid = userCredential.user?.uid ?? '';
-    let tokenUid = '';
-    userCredential.user?.getIdToken().then(idToken => {
-      tokenUid = idToken;
-    });
+    let tokenUidobjetc = JSON.parse(JSON.stringify(userCredential.user));
+    let tokenuidcode = tokenUidobjetc.stsTokenManager.accessToken;
     localStorage.setItem('userUid', userUid)
-    localStorage.setItem('tokenUid', tokenUid)
-    //console.log(userCredential.user?.uid);
-  }).catch(error => {
+    localStorage.setItem('tokenUid', tokenuidcode)
+    console.log(tokenuidcode);
+    console.log(userUid);
+}).catch(error => {
     alert('No se creo un carajo')
   });
   }

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
-import { getDatabase } from '@angular/fire/database';
+import { AngularFireDatabase} from '@angular/fire/compat/database';
 
 @Component({
   selector: 'app-inicio-cartas',
@@ -11,30 +11,31 @@ import { getDatabase } from '@angular/fire/database';
 export class InicioCartasComponent {
   title: string = 'Angular CRUD';
   msg: string = "Encantado de Informarte";
-  idTokenUser = localStorage.getItem('tokenUid');  
-  userUid = localStorage.getItem('userUid')
 
-  
-  databaseURL = `https://angular-crud-eec-default-rtdb.firebaseio.com/cards/${this.userUid}.json?auth=${this.idTokenUser}`;
-
-//   cards = [ 
-//     {'name': 'Mago de Hielo', cardType:'Tropa', 'descripcion': 'Mago que congela', 'email': 'Mago_Hielo@live.com'},
-//     {'name': 'Bola de Fuego', cardType:'Hechizo', 'descripcion': 'Bola de fuego del cielo', 'email': 'Bola_de_Fuego@live.com'},
-//     {'name': 'Torre Tesla', cardType:'Estructura', 'descripcion': 'Torre que se esconde hasta ver un enemigo', 'email': 'Torre_Tesla@live.com'}
-// ]
-;
-
-constructor(public auth: AngularFireAuth,private router: Router) {};
-
+constructor(public auth: AngularFireAuth,private router: Router,private db: AngularFireDatabase) {};
+cards: any[] = [];
 myValue:number = 0;
 model:any = { };
 model2:any = { };
+UserUid = localStorage.getItem('userUid');
+tokenUidCode = localStorage.getItem('tokenUid');
+
+
 
 addCard() : void{
-  
-  // this.cards.push(this.model);
-  // this.model = {};
-  // this.msg = "Se Agrego la Carta";
+  fetch(`https://angular-crud-eec-default-rtdb.firebaseio.com/cards/${this.UserUid}.json?auth=${this.tokenUidCode}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      "name": this.model.name,
+      "cardType": this.model.cardType,
+      "descripcion": this.model.descripcion
+    })
+  })
+   this.model = {};
+   this.msg = "Se Agrego la Carta";
 }
 deleteCard(/*i = this.cards.length*/):void{
   // var answer = confirm('estas seguro de querer eliminar la carta?');
@@ -46,7 +47,22 @@ deleteCard(/*i = this.cards.length*/):void{
   // }
 }
 
-editCard(/*i = this.cards.length*/): void{
+MostrarCartas(/*i = this.cards.length*/): void{
+
+  fetch(`https://angular-crud-eec-default-rtdb.firebaseio.com/cards/${this.UserUid}.json?auth=${this.tokenUidCode}`)
+  .then(response => response.json())
+  .then(data => {
+    const keys = Object.keys(data);
+     this.cards = keys.map(key => ({
+      id : key,
+      name : data[key].name,
+      cardType: data[key].cardType,
+      descripcion: data[key].descripcion
+    }));
+    console.log(this.cards)
+
+  })
+  
  /* this.model2.name = this.cards[i].name;
   this.model2.cardType = this.cards[i].cardType;
   this.model2.descripcion = this.cards[i].descripcion;

@@ -26,7 +26,12 @@ export class LogInComponent{
         console.log('se autentico usuario');
         this.router.navigate(['/inicioCartas']);
         let userUid = userCredential.user?.uid ?? '';
+        let tokenUidobjetc = JSON.parse(JSON.stringify(userCredential.user));
+        let tokenuidcode = tokenUidobjetc.stsTokenManager.accessToken;
         localStorage.setItem('userUid', userUid)
+        localStorage.setItem('tokenUid', tokenuidcode)
+        console.log(tokenuidcode);
+        console.log(userUid);
       })
       .catch(error => {
         alert('Hay algun parametro incorrecto o vacio y eso no puede estar asi cabecita dura')

@@ -65,12 +65,12 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td></td>
-              <td></td>
-              <td></td>
+            <tr *ngFor="let card of cards">
+              <td>{{card.name}}</td>
+              <td>{{card.cardType}}<td>
+              <td>{{card.descripcion}}</td> 
               <td>
-                <a (click)="editCard()" class="btn btnEditCard btn-success">
+                <a (click)="MostrarCartas()" class="btn btnEditCard btn-success">
                   Edit
                 </a>
                 <a (click)="deleteCard()" class="btn btnDeleteCard btn-danger">
