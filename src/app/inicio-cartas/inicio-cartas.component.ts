@@ -33,8 +33,12 @@ addCard() : void{
       "descripcion": this.model.descripcion
     })
   })
+  .then(() => {
    this.model = {};
-   this.msg = "Se Agrego la Carta";
+   this.msg = "Se Agrego la Carta";    
+   this.MostrarCartas();
+  })
+
 }
 
 deleteCard(/*i = this.cards.length*/):void{
@@ -62,32 +66,31 @@ MostrarCartas(): object{
   return this.cards;
 }
 
-editButton(i = this.cards.length):void {
-  this.model2.name = this.cards[i].name;
-  this.model2.cardType = this.cards[i].cardType
-  this.model2.descripcion = this.cards[i].descripcion
+editButton(i:number):void {
+  this.model2 = Object.assign({},this.cards[i]);
   console.log(this.model2)
 }
 
 updateCard(): void {
   fetch(`https://angular-crud-eec-default-rtdb.firebaseio.com/cards/${this.UserUid}.json?auth=${this.tokenUidCode}`, {
-    method: 'PUT',
+    method: 'PATCH',
     headers: {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-      "name": this.model2.name,
-      "cardType": this.model2.cardType,
-      "descripcion": this.model2.descripcion
+    "data":{
+       "name": this.model2.name,
+       "cardType": this.model2.cardType,
+       "descripcion": this.model2.descripcion        
+      }
+
     })
   })
-  .then(response => response.json())
-  .then(data => {
-    console.log('Registro actualizado:', data);
-    this.msg = "Se actualizó la Carta";
-    this.model2 = {};
+  .then(() => {
+    this.msg = "Se acttualizo la carta"
+    this.MostrarCartas();
   })
-  .catch(error => console.error('Error al actualizar el registro:', error));
+  .catch(error => console.error(error));
 }
 
 
