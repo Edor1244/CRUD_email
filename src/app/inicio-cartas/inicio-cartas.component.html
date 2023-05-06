@@ -46,7 +46,8 @@
           <br>
           <div class="form-group">
             <div class="col-sm-10 col-sm-offset-2">
-              <button id="button_Aceptar" type="submit" class="btn btn-success"> Aceptar </button>
+              <button id="button_Aceptar" type="submit" class="btn btn-success"> Crear Carta </button>
+              <a (click)="MostrarCartas()" class="btn btnEditCard btn-success">Mostrar y Actualizar cartas</a>
             </div>
           </div>
         </form>
@@ -59,23 +60,19 @@
           <thead>
             <tr>
               <th>Name</th>
-              <th>TypeCard</th>
+              <th>CardType</th>
               <th>Descripcion</th>
               <th>Actions</th>
             </tr>
           </thead>
-          <tbody>
-            <tr *ngFor="let card of cards">
+        <tbody>
+            <tr *ngFor="let card of cards; let i = index">
               <td>{{card.name}}</td>
-              <td>{{card.cardType}}<td>
+              <td>{{card.cardType}}</td>
               <td>{{card.descripcion}}</td> 
               <td>
-                <a (click)="MostrarCartas()" class="btn btnEditCard btn-success">
-                  Edit
-                </a>
-                <a (click)="deleteCard()" class="btn btnDeleteCard btn-danger">
-                  Delete
-                </a>
+                <a (click)="editButton(i)" class="btn btnEditCard btn-success">Edit</a>
+                <a (click)="deleteCard()" class="btn btnDeleteCard btn-danger">Delete</a>
               </td>
             </tr>
           </tbody>
@@ -111,7 +108,7 @@
               <br>
               <div class="form-group">
                 <div class="col-sm-10 col-sm-offset-2">
-                  <button type="submit" class="btn btn-success" (click)="updateCard()">Actualizar</button>
+                  <button type="submit" class="btn btn-success" (click)="MostrarCartas()">Actualizar</button>
                 </div>
               </div>
             </form>

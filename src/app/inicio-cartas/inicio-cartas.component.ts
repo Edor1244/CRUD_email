@@ -21,7 +21,6 @@ UserUid = localStorage.getItem('userUid');
 tokenUidCode = localStorage.getItem('tokenUid');
 
 
-
 addCard() : void{
   fetch(`https://angular-crud-eec-default-rtdb.firebaseio.com/cards/${this.UserUid}.json?auth=${this.tokenUidCode}`, {
     method: 'POST',
@@ -37,6 +36,7 @@ addCard() : void{
    this.model = {};
    this.msg = "Se Agrego la Carta";
 }
+
 deleteCard(/*i = this.cards.length*/):void{
   // var answer = confirm('estas seguro de querer eliminar la carta?');
   // if(answer == true){
@@ -47,8 +47,7 @@ deleteCard(/*i = this.cards.length*/):void{
   // }
 }
 
-MostrarCartas(/*i = this.cards.length*/): void{
-
+MostrarCartas(): object{
   fetch(`https://angular-crud-eec-default-rtdb.firebaseio.com/cards/${this.UserUid}.json?auth=${this.tokenUidCode}`)
   .then(response => response.json())
   .then(data => {
@@ -59,17 +58,20 @@ MostrarCartas(/*i = this.cards.length*/): void{
       cardType: data[key].cardType,
       descripcion: data[key].descripcion
     }));
-    console.log(this.cards)
-
   })
-  
- /* this.model2.name = this.cards[i].name;
-  this.model2.cardType = this.cards[i].cardType;
-  this.model2.descripcion = this.cards[i].descripcion;
-  this.myValue = i;*/
+  return this.cards;
 }
 
-updateCard():void{
+editButton(i = this.cards.length):void {
+  console.log(this.model2)
+  this.model2.name = this.cards[i].name;
+  this.model2.name = this.cards[i].cardType;
+  this.model2.name = this.cards[i].descripcion;
+  this.myValue = i;
+}
+
+updateCard(i = this.cards.length):void{
+
   /*let i = this.myValue;
   for( let j = 0 ; j <this.cards.length; j++){
     if(i == j){
