@@ -1,16 +1,25 @@
-<form>
-    <div>
-      <label>Nombre:</label>
-      <input type="text" name="name"  autocomplete="off" class="form-control"required="true"  placeholder="Write the Name">
+<div class="container-app">
+  <h1 class="title">Registrarse:</h1>
+  <form>
+    <div class="form-group">
+      <label class="label">Nombre</label>
+      <div>
+      <input type="text" name="name" autocomplete="off" class="input" required="true" placeholder="Escriba su nombre">  
+      </div>
     </div>
-    <div>
-      <label>Email:</label>
-      <input type="email" name="email" autocomplete="off" class="form-control"  [(ngModel)]="modelRegister.email"  placeholder="Write the Email" required="true" >
+    <div class="form-group">
+      <label class="label">Email</label>
+      <div>
+        <input type="email" name="email" autocomplete="off" class="input" [(ngModel)]="modelRegister.email" placeholder="Escriba su correo electrónico" required="true">
+      </div>
     </div>
-    <div>
-      <label>Contraseña:</label>
-      <input  autocomplete="off" class="form-control"  [(ngModel)]="modelRegister.password"  placeholder="Write the Password" required="true" type="password" name="password">
+    <div class="form-group">
+      <label class="label">Contraseña</label>
+      <div>
+        <input autocomplete="off" class="input" [(ngModel)]="modelRegister.password" placeholder="Escriba su contraseña" required="true" type="password" name="password">
+      </div>
     </div>
-    <button type="submit" (click)="createNewUser()" class="btn btn-success" >Registrarse</button>
-    <button id="button_back2Register" (click)="back2Login()" class="btn btn-success"> Regresar a Login</button>
+    <button type="submit" id="button_Registrarse" (click)="createNewUser()" class="button btn-success">Registrarse</button>
+    <button id="button_back2login" (click)="back2Login()" class="button btn-success">Regresar a Login</button>
   </form>
+</div>

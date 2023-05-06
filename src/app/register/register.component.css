@@ -1,6 +1,53 @@
-.app{
-    border-radius: 4px;
-    margin-top: 20px;
-    padding: 30px;
-    background: #fff;
-}
+.container-app {
+    background-color: #F2EFE9;
+    border-radius: 20px;
+    box-shadow: 0px 0px 10px #BDBDBD;
+    padding: 20px;
+    margin: auto;
+    width: 80%;
+    max-width: 600px;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .label {
+    color: #8B5B6E;
+    font-size: 20px;
+  }
+  
+  .input {
+    padding: 8px;
+    width: 80%;
+    font-size: 16px;
+    border: 2px solid #8B5B6E;
+    border-radius: 10px;
+    font-size: 16px;
+  }
+  
+  .button {
+    border-radius: 100px;
+    font-size: 22px;
+    font-weight: bold;
+    color: #fff;
+    margin-right: 40px;
+    padding: 10px 30px;
+    text-align: center;
+  }
+  #button_Registrarse {
+    background-color: #757575;
+  }
+  
+  #button_back2login {
+    background-color: #8B5B6E;
+  }
+  
+  .title {
+    font-size: 80px;
+    font-weight: bold;
+    color: black;
+    text-align: center;
+    margin-right: 40px;
+  }
+  
