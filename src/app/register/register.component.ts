@@ -36,10 +36,8 @@ export class RegisterComponent {
     let tokenuidcode = tokenUidobjetc.stsTokenManager.accessToken;
     localStorage.setItem('userUid', userUid)
     localStorage.setItem('tokenUid', tokenuidcode)
-    console.log(tokenuidcode);
-    console.log(userUid);
 }).catch(error => {
-    alert('No se creo un carajo')
+    console.log('No se creo un carajo');
   });
   }
 }
