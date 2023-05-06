@@ -13,6 +13,7 @@ export class InicioCartasComponent {
   msg: string = "Encantado de Informarte";
 
 constructor(public auth: AngularFireAuth,private router: Router,private db: AngularFireDatabase) {};
+hideUpdate: boolean = true;
 cards: any[] = [];
 myValue:number = 0;
 model:any = { };
@@ -41,14 +42,17 @@ addCard() : void{
 
 }
 
-deleteCard(/*i = this.cards.length*/):void{
-  // var answer = confirm('estas seguro de querer eliminar la carta?');
-  // if(answer == true){
-  //   this.cards.splice(i,1);
-  //   this.msg = "Se elimino la Carta";
-  // }else {
-  //   this.msg = "La carta no se elimino";
-  // }
+deleteCard(i:number):void{
+  this.model2 = Object.assign({},this.cards[i]);
+  const cardId = this.model2.id;
+  fetch(`https://angular-crud-eec-default-rtdb.firebaseio.com/cards/${this.UserUid}/${cardId}.json?auth=${this.tokenUidCode}`, {
+    method: 'DELETE',
+  })
+  .then(() => {
+    this.msg = "Se eliminó la carta";
+    this.MostrarCartas();
+  })
+  .catch(error => console.error(error));
 }
 
 MostrarCartas(): object{
@@ -67,44 +71,31 @@ MostrarCartas(): object{
 }
 
 editButton(i:number):void {
+  this.hideUpdate = false;
   this.model2 = Object.assign({},this.cards[i]);
-  console.log(this.model2)
 }
 
 updateCard(): void {
-  fetch(`https://angular-crud-eec-default-rtdb.firebaseio.com/cards/${this.UserUid}.json?auth=${this.tokenUidCode}`, {
+  const cardId = this.model2.id
+  console.log('este es el id de model2' + this.model2.id)
+  fetch(`https://angular-crud-eec-default-rtdb.firebaseio.com/cards/${this.UserUid}/${cardId}.json?auth=${this.tokenUidCode}`, {
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-    "data":{
        "name": this.model2.name,
        "cardType": this.model2.cardType,
        "descripcion": this.model2.descripcion        
-      }
-
     })
   })
   .then(() => {
-    this.msg = "Se acttualizo la carta"
+    this.msg = "Se actualizo la carta"
     this.MostrarCartas();
+    this.hideUpdate = true;
   })
   .catch(error => console.error(error));
 }
-
-
-/*updateCard(i = this.cards.length):void{
-
-  let i = this.myValue;
-  for( let j = 0 ; j <this.cards.length; j++){
-    if(i == j){
-      this.cards[i] = this.model2;
-      this.model2 = {};
-    }
-  }
-  this.msg = "Se actualizo la Carta";
-}*/
 
 CerrarSesion(){
   this.auth.signOut();

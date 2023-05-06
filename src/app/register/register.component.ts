@@ -37,7 +37,7 @@ export class RegisterComponent {
     localStorage.setItem('userUid', userUid)
     localStorage.setItem('tokenUid', tokenuidcode)
 }).catch(error => {
-    console.log('No se creo un carajo');
+    console.log('No se creo el usuario');
   });
   }
 }
